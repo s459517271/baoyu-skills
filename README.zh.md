@@ -97,32 +97,32 @@ clawhub install baoyu-markdown-to-html
 
 内容生成和发布技能。
 
-#### baoyu-image-cards
+#### baoyu-xhs-images
 
-图片卡片系列生成器。将内容拆解为 1-10 张卡通风格图片卡片，支持 **风格 × 布局** 系统和可选配色覆盖。
+小红书图片卡片系列生成器。将内容拆解为 1-10 张卡通风格图片卡片，支持 **风格 × 布局** 系统和可选配色覆盖。
 
 ```bash
 # 自动选择风格和布局
-/baoyu-image-cards posts/ai-future/article.md
+/baoyu-xhs-images posts/ai-future/article.md
 
 # 指定风格
-/baoyu-image-cards posts/ai-future/article.md --style notion
+/baoyu-xhs-images posts/ai-future/article.md --style notion
 
 # 指定布局
-/baoyu-image-cards posts/ai-future/article.md --layout dense
+/baoyu-xhs-images posts/ai-future/article.md --layout dense
 
 # 组合风格和布局
-/baoyu-image-cards posts/ai-future/article.md --style notion --layout list
+/baoyu-xhs-images posts/ai-future/article.md --style notion --layout list
 
 # 覆盖配色
-/baoyu-image-cards posts/ai-future/article.md --style notion --palette macaron
+/baoyu-xhs-images posts/ai-future/article.md --style notion --palette macaron
 
 # 直接输入内容
-/baoyu-image-cards 今日星座运势
+/baoyu-xhs-images 今日星座运势
 
 # 非交互模式（跳过所有确认，适用于定时任务）
-/baoyu-image-cards posts/ai-future/article.md --yes
-/baoyu-image-cards posts/ai-future/article.md --yes --preset knowledge-card
+/baoyu-xhs-images posts/ai-future/article.md --yes
+/baoyu-xhs-images posts/ai-future/article.md --yes --preset knowledge-card
 ```
 
 **风格**（视觉美学）：`cute`（默认）、`fresh`、`warm`、`bold`、`minimal`、`retro`、`pop`、`notion`、`chalkboard`、`study-notes`、`screen-print`、`sketch-notes`

@@ -97,32 +97,32 @@ Skills are organized into three categories:
 
 Content generation and publishing skills.
 
-#### baoyu-image-cards
+#### baoyu-xhs-images
 
-Image card series generator. Breaks down content into 1-10 cartoon-style image cards with **Style × Layout** system and optional palette override.
+Xiaohongshu image card series generator. Breaks down content into 1-10 cartoon-style image cards with **Style × Layout** system and optional palette override.
 
 ```bash
 # Auto-select style and layout
-/baoyu-image-cards posts/ai-future/article.md
+/baoyu-xhs-images posts/ai-future/article.md
 
 # Specify style
-/baoyu-image-cards posts/ai-future/article.md --style notion
+/baoyu-xhs-images posts/ai-future/article.md --style notion
 
 # Specify layout
-/baoyu-image-cards posts/ai-future/article.md --layout dense
+/baoyu-xhs-images posts/ai-future/article.md --layout dense
 
 # Combine style and layout
-/baoyu-image-cards posts/ai-future/article.md --style notion --layout list
+/baoyu-xhs-images posts/ai-future/article.md --style notion --layout list
 
 # Override palette
-/baoyu-image-cards posts/ai-future/article.md --style notion --palette macaron
+/baoyu-xhs-images posts/ai-future/article.md --style notion --palette macaron
 
 # Direct content input
-/baoyu-image-cards 今日星座运势
+/baoyu-xhs-images 今日星座运势
 
 # Non-interactive (skip all confirmations, for scheduled tasks)
-/baoyu-image-cards posts/ai-future/article.md --yes
-/baoyu-image-cards posts/ai-future/article.md --yes --preset knowledge-card
+/baoyu-xhs-images posts/ai-future/article.md --yes
+/baoyu-xhs-images posts/ai-future/article.md --yes --preset knowledge-card
 ```
 
 **Styles** (visual aesthetics): `cute` (default), `fresh`, `warm`, `bold`, `minimal`, `retro`, `pop`, `notion`, `chalkboard`, `study-notes`, `screen-print`, `sketch-notes`
