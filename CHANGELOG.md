@@ -2,6 +2,12 @@
 
 English | [中文](./CHANGELOG.zh.md)
 
+## 1.111.1 - 2026-04-21
+
+### Documentation
+- Add a top-level `## Confirmation Policy` section to every image-generating skill (`baoyu-infographic`, `baoyu-cover-image`, `baoyu-slide-deck`, `baoyu-image-cards`, `baoyu-xhs-images`, `baoyu-article-illustrator`) as a single source of truth: explicit skill invocation, keyword shortcuts, EXTEND.md defaults, and auto-recommendations are recommendation inputs only — they never authorize skipping the confirmation step. Opt-out requires an explicit current-request signal (`--no-confirm` / `--quick` / `--yes` / "直接生成" / equivalent).
+- `baoyu-infographic`: consolidate the scattered reminders (previously repeated across Step 5, Step 6, Default combination, Keyword Shortcuts, and the preferences docs) into a single policy section referenced from Step 4's hard gate.
+
 ## 1.111.0 - 2026-04-21
 
 ### Refactor

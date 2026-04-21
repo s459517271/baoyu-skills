@@ -2,6 +2,12 @@
 
 [English](./CHANGELOG.md) | 中文
 
+## 1.111.1 - 2026-04-21
+
+### 文档
+- 为每个图片生成类技能（`baoyu-infographic`、`baoyu-cover-image`、`baoyu-slide-deck`、`baoyu-image-cards`、`baoyu-xhs-images`、`baoyu-article-illustrator`）新增顶级 `## Confirmation Policy` 章节作为单一事实源：显式调用技能、关键词快捷方式、EXTEND.md 偏好、自动推荐都只是"推荐输入"，不授权跳过确认步骤。跳过确认必须由当前请求中的明确信号触发（`--no-confirm` / `--quick` / `--yes` / "直接生成" / 同义表达）。
+- `baoyu-infographic`：将原先散落在 Step 5、Step 6、Default combination、Keyword Shortcuts 及 preferences 文档中的重复提醒合并为单一策略章节，由 Step 4 的 hard gate 引用。
+
 ## 1.111.0 - 2026-04-21
 
 ### 重构
