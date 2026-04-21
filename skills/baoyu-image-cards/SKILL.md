@@ -1,7 +1,7 @@
 ---
 name: baoyu-image-cards
 description: Generates infographic image card series with 12 visual styles, 8 layouts, and 3 color palettes. Breaks content into 1-10 cartoon-style image cards optimized for social media engagement. Use when user mentions "小红书图片", "小红书种草", "小绿书", "微信图文", "微信贴图", "image cards", "图片卡片", or wants social media infographic series.
-version: 1.56.1
+version: 1.56.2
 metadata:
   openclaw:
     homepage: https://github.com/JimLiu/baoyu-skills#baoyu-image-cards
@@ -38,6 +38,15 @@ Setting `preferred_image_backend: ask` forces the step-3 prompt every run regard
 **Prompt file requirement (hard)**: write each image's full, final prompt to a standalone file under `prompts/` (naming: `NN-{type}-[slug].md`) BEFORE invoking any backend. The file is the reproducibility record and lets you switch backends without regenerating prompts.
 
 Concrete tool names (`imagegen`, `image_generate`, `baoyu-imagine`) above are examples — substitute the local equivalents under the same rule.
+
+## Confirmation Policy
+
+Default behavior: **confirm before generation**.
+
+- Treat explicit skill invocation, a file path, matched signals/presets, and `EXTEND.md` defaults as **recommendation inputs only**. None of them authorizes skipping confirmation.
+- Do **not** start Step 3 until the user completes Step 2.
+- Skip confirmation only when the current request explicitly says to do so, for example: `--yes`, "直接生成", "不用确认", "跳过确认", "按默认出图", or equivalent wording.
+- If confirmation is skipped explicitly, state the assumed strategy / style / layout / palette / count / backend in the next user-facing update before generating.
 
 ## Language
 
@@ -298,6 +307,8 @@ Check these paths in order; first hit wins:
 5. Write everything to `analysis.md`.
 
 ### Step 2: Smart Confirm ⚠️ REQUIRED
+
+**Hard gate**: this step is mandatory per the [Confirmation Policy](#confirmation-policy) — Step 3 cannot start until the user confirms here (or explicitly opts out with `--yes` / equivalent wording in the current request).
 
 Goal: present the auto-recommended plan and let the user confirm or adjust. Skip this step entirely under `--yes` — proceed with Path A using the analysis and any CLI overrides.
 
