@@ -2,6 +2,53 @@
 
 [English](./CHANGELOG.md) | 中文
 
+## 1.118.0 - 2026-05-21
+
+### 新功能
+- `codex-imagegen`：新增面向非 Codex 运行时（如 Claude Code）的图像生成后端 —— 通过 `codex exec --json --sandbox danger-full-access` 调用 Codex CLI 内置的 `image_gen` 工具，无需 `OPENAI_API_KEY`。内置幂等缓存、文件锁并发控制、JSONL 事件流解析、PNG 魔术字节校验和指数退避重试 (by @yelban, #158)
+- `baoyu-cover-image`：在 `SKILL.md` 中接入 `codex-imagegen` 包装脚本（当 `preferred_image_backend: codex-imagegen` 时生效），并补充慢网络下的 `--timeout` 参数说明
+
+### 重构
+- `codex-imagegen`：在代码中强制校验 `--prompt` 与 `--prompt-file` 互斥（此前仅在文档说明）
+- `codex-imagegen`：将 `(opts as any).__promptFile` 这一 hack 改为 `CliOptions` 上类型化的 `promptFile` 字段
+- `codex-imagegen`：用复用的 `findCpToTarget` 辅助函数替换内联的 `cp|mv ... generated_images` 正则
+- `codex-imagegen`：错误返回时正确透传 `attempts`（此前硬编码为 `0`）
+- `codex-imagegen`：删除无用的 `parseFinalJson()` 函数及对应测试（包装脚本以磁盘校验为准，不再依赖 agent 自报 JSON）
+
+### 安全
+- `codex-imagegen`：在拼入发往 `codex exec --sandbox danger-full-access` 的 agent 指令前，拒绝包含 shell 元字符的 `--image` / `--ref` 路径
+
+### 致谢
+- `codex-imagegen` 后端由 @yelban 贡献 (#158)
+
+## 1.117.5 - 2026-05-21
+
+### 致谢
+- `baoyu-post-to-wechat`：远程 API 发布更新感谢 Dame5211 <1079825614@qq.com>
+
+## 1.117.4 - 2026-05-21
+
+### 新功能
+- `baoyu-post-to-wechat`：新增通过 SSH SOCKS5 隧道进行远程 API 发布
+
+### 修复
+- `baoyu-post-to-wechat`：修复远程 API 发布在 Bun 下的运行问题，并严格校验远程发布配置
+
+### CI
+- 测试前安装 `baoyu-post-to-wechat` 脚本依赖
+
+## 1.117.3 - 2026-05-20
+
+### 新功能
+- CI：新增 skill 发布提交校验 —— 涉及 `skills/<name>/**` 的提交必须使用 Conventional Commit 格式；发布/同步时校验 SKILL.md 版本一致性
+
+### 修复
+- `baoyu-diagram`：为 SKILL.md 添加 version 字段
+- `baoyu-post-to-wechat`：同步 SKILL.md 版本
+
+### 文档
+- `baoyu-wechat-summary`：重构 profile 字段 —— 将 `aliases` 拆分为 `group_nicknames`（用户历史群名）和 `aliases`（其他成员对用户的称呼），新增 `tags` 字段存储横向属性
+
 ## 1.117.2 - 2026-05-17
 
 ### 文档

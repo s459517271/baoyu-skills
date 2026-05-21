@@ -2,6 +2,53 @@
 
 English | [中文](./CHANGELOG.zh.md)
 
+## 1.118.0 - 2026-05-21
+
+### Features
+- `codex-imagegen`: new image-generation backend for non-Codex runtimes (e.g., Claude Code) — spawns `codex exec --json --sandbox danger-full-access` and delegates to Codex CLI's built-in `image_gen` tool, so no `OPENAI_API_KEY` is required. Ships with idempotency cache, file-lock concurrency control, JSONL event-stream parsing, PNG magic-byte validation, and exponential-backoff retries (by @yelban, #158)
+- `baoyu-cover-image`: wire `SKILL.md` to call the `codex-imagegen` wrapper when `preferred_image_backend: codex-imagegen` is set, with `--timeout` documented for slow networks
+
+### Refactor
+- `codex-imagegen`: enforce `--prompt` / `--prompt-file` mutual exclusion in code (was docs-only)
+- `codex-imagegen`: replace `(opts as any).__promptFile` hack with a typed `promptFile` field on `CliOptions`
+- `codex-imagegen`: replace inline `cp|mv ... generated_images` regex with the shared `findCpToTarget` helper
+- `codex-imagegen`: propagate `attempts` on error responses (previously hardcoded to `0`)
+- `codex-imagegen`: drop dead `parseFinalJson()` + matching test (wrapper ignores agent-reported JSON in favor of disk verification)
+
+### Security
+- `codex-imagegen`: reject `--image` / `--ref` paths containing shell metacharacters before interpolating them into the agent instruction sent to `codex exec --sandbox danger-full-access`
+
+### Credits
+- `codex-imagegen` backend contributed by @yelban (#158)
+
+## 1.117.5 - 2026-05-21
+
+### Credits
+- `baoyu-post-to-wechat`: remote API publishing update credited to Dame5211 <1079825614@qq.com>
+
+## 1.117.4 - 2026-05-21
+
+### Features
+- `baoyu-post-to-wechat`: add remote API publishing via an SSH SOCKS5 tunnel
+
+### Fixes
+- `baoyu-post-to-wechat`: make remote API publishing work under Bun and strictly validate remote publish config
+
+### CI
+- Install `baoyu-post-to-wechat` script dependencies before running tests
+
+## 1.117.3 - 2026-05-20
+
+### Features
+- CI: add skill release commit validation — commits touching `skills/<name>/**` must use Conventional Commit subjects; SKILL.md version validated during publish/sync
+
+### Fixes
+- `baoyu-diagram`: add version field to SKILL.md
+- `baoyu-post-to-wechat`: sync SKILL.md version
+
+### Documentation
+- `baoyu-wechat-summary`: restructure profile fields — split `aliases` into `group_nicknames` (user's own prior names) and `aliases` (nicknames from other members), add `tags` for cross-cutting attributes
+
 ## 1.117.2 - 2026-05-17
 
 ### Documentation
